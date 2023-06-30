@@ -1,45 +1,31 @@
 pipeline{
 
-agent any
+    agent any
+    tools {
 
-tools {
-    maven "maven3.9.2"
-}
+        maven "maven3.9.2"
+    }
 
-stages{
-    stage('clonefromsourcecode'){
-        steps{
-            sh "echo 'clone latest code from github'"
-            sh "echo 'build for dev environment june30'"
-           git 'https://github.com/Lion-Technology-Solutions/liontech-emr-health-app.git'
+    stages {
+        stage('clonefromsourcecode'){
+            steps{
+                sh "echo 'clone latest code from github'"
+                sh "echo 'build  developing for dev environment for june17'"
+                git 'https://github.com/Lion-Technology-Solutions/liontech-emr-health-app.git'
+            }
+        }
 
+        stage('Test+build+package'){
+            steps{
+
+                sh "echo 'running sonarqube code quality analysis'"
+                sh "echo 'class20 devops engineers develop pipelines'"
+                sh "echo 'testing must passoed inorder to pacjage application'"
+                sh  "mvn install"
+                sh  "mvn validate"
+                sh   "mvn test"
+                sh   "mvn clean package"
+            }
         }
     }
-    stage('test+build+package')
-        steps{
-            sh "running sonarqube code analysis"
-            sh "running third pipeline project"
-            sh "testing must passed in order to proceed"
-            sh "mvn install"
-            sh "mvn validate"
-            sh "mvn test"
-            sh "mvn clean package"
-
-    stage('code quality analysis')
-
-
-        }
-
-
-} 
-
-
-
-
-
-
-
-
-
-
 }
