@@ -25,6 +25,8 @@ stages{
             sh "mvn test"
             sh "mvn clean package"
 
+    stage('code quality analysis')
+
 
         }
 
